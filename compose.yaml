@@ -1,7 +1,6 @@
 name: grafana-alloy
 
 include:
-  - ./visualization.yaml
   - ./monitoring.yaml
   - ./observability.yaml
 

@@ -1,5 +1,5 @@
 logging {
-	level = "debug"
+	level = "warning"
 
 	// Forward internal logs to the local Loki instance.
 	write_to = [loki.relabel.alloy_logs.receiver]
@@ -52,13 +52,13 @@ pyroscope.scrape "default" {
 
 prometheus.remote_write "mimir" {
 	endpoint {
-		url = "http://mimir:9009/api/v1/push"
+		url = "http://172.16.0.205:9009/api/v1/push"
 	}
 }
 
 loki.write "loki" {
 	endpoint {
-		url = "http://loki:3100/loki/api/v1/push"
+		url = "http://172.16.0.205:3100/loki/api/v1/push"
 	}
 }
 

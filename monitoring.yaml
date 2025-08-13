@@ -1,27 +1,5 @@
 services:
-  prometheus:
-    container_name: prometheus
-    image: prom/prometheus:latest
-    restart: on-failure
-    command:
-      - --config.file=/etc/prometheus-config/prometheus.yaml
-    volumes:
-      - ./config/prometheus:/etc/prometheus-config
-    ports:
-      - '9090:9090'
 
-  mimir:
-    container_name: mimir
-    image: grafana/mimir:latest
-    restart: on-failure
-    command:
-      - -config.file=/etc/mimir-config/mimir.yaml
-    volumes:
-      - ./config/mimir:/etc/mimir-config
-    ports:
-      - '9009:9009'
-    depends_on:
-      - prometheus
 
   node_exporter:
     container_name: node_exporter

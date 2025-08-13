@@ -15,14 +15,6 @@ services:
       - loki
       - mimir
       - pyroscope
-
-  loki:
-    container_name: loki
-    image: grafana/loki:latest
-    restart: on-failure
-    ports:
-      - '3100:3100'
-
   pyroscope:
     container_name: pyroscope
     image: grafana/pyroscope:latest
