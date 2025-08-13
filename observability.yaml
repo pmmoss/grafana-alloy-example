@@ -12,8 +12,6 @@ services:
       - '4317:4317'
       - '4318:4318'
     depends_on:
-      - loki
-      - mimir
       - pyroscope
   pyroscope:
     container_name: pyroscope
