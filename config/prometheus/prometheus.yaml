@@ -2,15 +2,11 @@ global:
   scrape_interval: 15s # How frequently to scrape targets by default
 
 scrape_configs:
-  - job_name: 'nodejs-app'
+  # Basic scrape config for node_exporter
+  - job_name: 'node_exporter'
     static_configs:
-      - targets: ['http://172.16.0.20:9100'] # Target your Node.js app metrics endpoint
-
-# Commented out, as Alloy config contains this job
-  # # Scrape config for Windows WMI Exporter
-  # - job_name: 'node_exporter'
-  #   static_configs:
-  #     - targets: ['node_exporter:9100'] # Node Exporter metrics
+      - targets: ['node_exporter:9100']
+    scrape_interval: 15s
 
 remote_write:
   - url: 'http://mimir:9009/api/v1/push' # Send the scraped metrics to Mimir's remote write API

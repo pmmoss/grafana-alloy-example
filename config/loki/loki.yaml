@@ -43,3 +43,6 @@ ruler:
 # If you would like to disable reporting, uncomment the following lines:
 analytics:
   reporting_enabled: false
+  
+limits_config:
+  volume_enabled: true

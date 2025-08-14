@@ -20,10 +20,9 @@ services:
       - -config.file=/etc/mimir-config/mimir.yaml
     volumes:
       - ./config/mimir:/etc/mimir-config
+      - mimir-data:/tmp/mimir
     ports:
       - '9009:9009'
-    depends_on:
-      - prometheus
     networks:
       - monitoring
 
