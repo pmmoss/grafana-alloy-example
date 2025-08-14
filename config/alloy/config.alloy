@@ -19,12 +19,19 @@ loki.relabel "alloy_logs" {
 	forward_to = [loki.write.loki.receiver]
 }
 
+// Add an OpenTelemetry receiver
+otelcol.receiver.otlp "tempo_receiver" {
+    output {
+        traces = [otelcol.exporter.otlp.tempo_grpc.input] // Forward received traces to the Tempo gRPC exporter
+    }
+}
+
 tracing {
 	// Write all spans. Don't do this in production!
 	sampling_fraction = 1.0
 
-	// Forward internal spans to the local Tempo instance.
-	write_to = [otelcol.exporter.otlp.tempo.input]
+	// Forward internal spans to the local Tempo instance through the OTLP exporter
+	write_to = [otelcol.exporter.otlp.tempo_grpc.input] // Corrected: refer to the input of the otelcol.exporter.otlp component
 }
 
 // Collect metrics from the local running Alloy instance and forward to Prometheus.
@@ -68,7 +75,7 @@ otelcol.exporter.otlp "tempo_grpc" {
 
 		tls {
 			insecure = true
-      insecure_skip_verify = true
+            insecure_skip_verify = true
 		}
 	}
 }
