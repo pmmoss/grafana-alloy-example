@@ -36,6 +36,9 @@ services:
       - ./operations/alloy-mixin:/etc/alloy-mixin
     working_dir: /etc/alloy-mixin
     command: jb install
+    networks:
+      - monitoring
+
 
   # Provision alloy-mixin after Grafana is healthy and running.
   provision-dashboards:
@@ -51,6 +54,9 @@ services:
       - ./operations/alloy-mixin:/etc/alloy-mixin
     working_dir: /etc/alloy-mixin
     command: grr apply grizzly/dashboards.jsonnet
+    networks:
+      - monitoring
+
 
   # Watch dashboards for changes and apply them to Grafana.
   watch-dashboards:
