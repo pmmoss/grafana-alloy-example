@@ -62,16 +62,28 @@ loki.write "loki" {
 	}
 }
 
-otelcol.exporter.otlp "tempo" {
+otelcol.exporter.otlp "tempo_grpc" {
 	client {
 		endpoint = "tempo:4317"
 
 		tls {
 			insecure = true
+      insecure_skip_verify = true
 		}
 	}
 }
-
+otelcol.exporter.otlp "tempo_http" {
+	client {
+		endpoint = "tempo:4318"
+		tls {
+			insecure = true
+			insecure_skip_verify = true
+		}
+		headers = {
+			"Content-Type" = "application/json",
+		}
+	}
+}
 pyroscope.write "pyroscope" {
 	endpoint {
 		url = "http://pyroscope:4040"
