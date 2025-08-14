@@ -22,8 +22,32 @@ services:
     container_name: loki
     image: grafana/loki:latest
     restart: on-failure
+    command:
+      - -config.file=/etc/loki-config/loki.yaml
+    volumes:
+      - ./config/loki:/etc/loki-config
+      - loki-data:/var/loki
     ports:
       - '3100:3100'
+    networks:
+      - monitoring
+
+  promtail:
+    container_name: promtail
+    image: grafana/promtail:latest
+    restart: on-failure
+    command:
+      - -config.file=/etc/promtail-config/promtail.yaml
+    volumes:
+      - ./config/promtail:/etc/promtail-config
+      - /var/log:/var/log:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /var/log/journal:/var/log/journal:ro
+      - /tmp:/tmp
+    ports:
+      - '9080:9080'
+    depends_on:
+      - loki
     networks:
       - monitoring
 

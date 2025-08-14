@@ -57,6 +57,15 @@ pyroscope.scrape "default" {
 	forward_to = [pyroscope.write.pyroscope.receiver]
 }
 
+// Collect logs from Promtail and forward to Loki
+loki.source.promtail "host_logs" {
+	server {
+		listen_address = "0.0.0.0"
+		listen_port    = 9080
+	}
+	forward_to = [loki.write.loki.receiver]
+}
+
 prometheus.remote_write "mimir" {
 	endpoint {
 		url = "http://mimir:9009/api/v1/push"
