@@ -4,7 +4,7 @@ global:
 scrape_configs:
   - job_name: 'nodejs-app'
     static_configs:
-      - targets: ['http://172.16.0.200:9100'] # Target your Node.js app metrics endpoint
+      - targets: ['http://172.16.0.20:9100'] # Target your Node.js app metrics endpoint
 
 # Commented out, as Alloy config contains this job
   # # Scrape config for Windows WMI Exporter
