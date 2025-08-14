@@ -12,6 +12,8 @@ services:
       - ./config/grafana/dashboards:/var/lib/grafana/dashboards
     ports:
       - '4000:3000' # Changed to map host port 4000 to container port 3000
+    networks:
+      - monitoring
     healthcheck:
       test: ['CMD', 'curl', '-f', 'http://localhost:3000/healthz']
       interval: 1s
@@ -64,3 +66,5 @@ services:
       - ./operations/alloy-mixin:/etc/alloy-mixin
     working_dir: /etc/alloy-mixin
     command: grr watch dashboards/ grizzly/dashboards.jsonnet
+    networks:
+      - monitoring

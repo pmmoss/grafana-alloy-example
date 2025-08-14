@@ -9,6 +9,8 @@ services:
       - ./config/prometheus:/etc/prometheus-config
     ports:
       - '9090:9090'
+    networks:
+      - monitoring
 
   mimir:
     container_name: mimir
