@@ -5,6 +5,10 @@ include:
   - ./monitoring.yaml
   - ./observability.yaml
 
+networks:
+  monitoring:
+    external: true
+
 services:
   alloy:
     container_name: alloy
@@ -32,3 +36,6 @@ services:
       - --stability.level=experimental
     ports:
       - '12345:12345'
+    networks:
+      - monitoring
+
