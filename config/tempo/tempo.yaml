@@ -100,3 +100,9 @@ overrides:
       'span-metrics',
       'local-blocks',
     ] # The types of metrics generation to enable for each tenant.
+traces:
+  otlp:
+    http:
+      enabled: true
+    grpc:
+      enabled: true
