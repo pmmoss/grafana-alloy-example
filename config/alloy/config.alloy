@@ -86,9 +86,6 @@ otelcol.exporter.otlp "tempo_http" {
 			insecure = true
 			insecure_skip_verify = true
 		}
-		headers = {
-			"Content-Type" = "application/json",
-		}
 	}
 }
 pyroscope.write "pyroscope" {
