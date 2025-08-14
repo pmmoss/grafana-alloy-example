@@ -81,7 +81,7 @@ otelcol.exporter.otlp "tempo_grpc" {
 }
 otelcol.exporter.otlp "tempo_http" {
 	client {
-		endpoint = "tempo:4318"
+		endpoint = "http://tempo:4318"
 		tls {
 			insecure = true
 			insecure_skip_verify = true
